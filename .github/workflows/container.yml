@@ -16,11 +16,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Install Dependencies
-        run: npm install
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - run: npm install
       - name: Build
         run: npm run build
-        env:
-          PRODUCTION_DOMAIN: ${{secrets.PRODUCTION_DOMAIN}}
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v1.5.0
         with:
