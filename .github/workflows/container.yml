@@ -1,30 +1,27 @@
-name: deploy-container
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - "container/**"
-defaults:
-  run:
-    working-directory: container
-jobs:
-  build:
-    name: Build and Deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      - name: Install Dependencies
-        uses: actions/setup-node@v3
-        with:
-          node-version: latest
-      - run: npm install
-      - name: Build
-        run: npm run build
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@v1.5.0
-        with:
-          args: deploy --only hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+# name: deploy-container
+# on:
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - "container/**"
+# defaults:
+#   run:
+#     working-directory: container
+# jobs:
+#   build:
+#     name: Build and Deploy
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v3
+#       - name: Install Dependencies
+#         run: npm install
+#       - name: Build
+#         run: npm run build
+#       - name: Deploy to Firebase
+#         uses: w9jds/firebase-action@master
+#         with:
+#           args: deploy --only hosting
+#         env:
+#           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
